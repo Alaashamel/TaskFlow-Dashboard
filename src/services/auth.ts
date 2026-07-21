@@ -9,7 +9,21 @@ export interface RegisterData {
   password: string;
 }
 
-export async function login(data: LoginData) {
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export interface LoginResponse {
+  success: boolean;
+  token: string;
+  user: User;
+}
+
+export async function login(
+  data: LoginData
+): Promise<LoginResponse> {
   console.log("Login Request:", data);
 
   return new Promise((resolve) => {
@@ -17,6 +31,11 @@ export async function login(data: LoginData) {
       resolve({
         success: true,
         token: "fake-jwt-token",
+        user: {
+          id: 1,
+          name: "Alaa Shamel",
+          email: data.email,
+        },
       });
     }, 1000);
   });
