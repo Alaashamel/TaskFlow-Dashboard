@@ -92,6 +92,11 @@ function App() {
             element={<Settings />}
           />
 
+          <Route
+path="/tasks"
+element={<Tasks />}
+/>
+
 
         </Route>
 
