@@ -1,5 +1,5 @@
 import StatsCard from "../components/StatsCard";
-
+import RecentTasks from "../components/RecentTasks";
 export default function Dashboard() {
   return (
     <div>
@@ -34,8 +34,8 @@ export default function Dashboard() {
           title="Team Members"
           value="8"
         />
-
       </div>
+        <RecentTasks />
 
     </div>
   );
