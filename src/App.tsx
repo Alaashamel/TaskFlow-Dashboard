@@ -6,10 +6,9 @@ import AuthLayout from "./layouts/AuthLayout";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
-
-import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -19,24 +18,19 @@ function App() {
 
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<Login />} />
-
           <Route path="/register" element={<Register />} />
         </Route>
 
         <Route
           element={
             <ProtectedRoute>
-              <Route
-  path="/profile"
-  element={<Profile />}
-/>
               <MainLayout />
             </ProtectedRoute>
           }
         >
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
-        
       </Routes>
     </BrowserRouter>
   );
