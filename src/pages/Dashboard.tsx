@@ -2,6 +2,9 @@ import StatsCard from "../components/StatsCard";
 import RecentTasks from "../components/RecentTasks";
 import TaskProgress from "../components/TaskProgress";
 import UpcomingTasks from "../components/UpcomingTasks";
+import ActivityFeed from "../components/ActivityFeed";
+
+
 export default function Dashboard() {
   return (
     <div>
@@ -40,7 +43,7 @@ export default function Dashboard() {
         <RecentTasks />
         <UpcomingTasks />
         <TaskProgress />
-        
+        <ActivityFeed />
 
     </div>
   );
