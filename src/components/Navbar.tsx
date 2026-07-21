@@ -1,13 +1,21 @@
-import Dropdown from "./Dropdown";
+import { useAuth } from "../context/AuthContext";
+import UserMenu from "./UserMenu";
 
 export default function Navbar() {
+  const { user } = useAuth();
+
   return (
-    <nav className="h-16 bg-white border-b shadow-sm flex items-center justify-between px-6">
-      <h1 className="text-2xl font-bold text-blue-600">
+    <nav className="h-16 border-b bg-white flex items-center justify-between px-6">
+      <h1 className="text-xl font-bold">
         TaskFlow
       </h1>
 
-      <Dropdown />
+      {user && (
+        <UserMenu
+          name={user.name}
+          email={user.email}
+        />
+      )}
     </nav>
   );
 }

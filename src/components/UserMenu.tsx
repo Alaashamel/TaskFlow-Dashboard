@@ -1,30 +1,37 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-export default function UserMenu() {
+interface UserMenuProps {
+  name: string;
+  email: string;
+}
+
+export default function UserMenu({
+  name,
+  email,
+}: UserMenuProps) {
   const navigate = useNavigate();
 
-  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const { logout } = useAuth();
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
-
+    logout();
     navigate("/login");
   };
 
   return (
     <div className="flex items-center gap-4">
       <div className="w-11 h-11 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-        {user.name?.charAt(0)}
+        {name.charAt(0).toUpperCase()}
       </div>
 
       <div className="text-right">
         <p className="font-semibold">
-          {user.name}
+          {name}
         </p>
 
         <p className="text-sm text-gray-500">
-          {user.email}
+          {email}
         </p>
       </div>
 
