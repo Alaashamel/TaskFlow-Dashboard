@@ -1,20 +1,21 @@
-import { ReactNode } from "react";
+import { Outlet } from "react-router-dom";
 
-interface AuthLayoutProps {
-  children: ReactNode;
-}
 
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default function AuthLayout() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700">
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
 
-      <div className="absolute top-8 left-8 text-white text-3xl font-bold">
-        TaskFlow
-      </div>
+      <div className="w-full max-w-md">
+
+        <div className="text-center mb-6">
+          <h1 className="text-3xl font-bold">
+            TaskFlow
+          </h1>
+        </div>
 
 
-      <div className="bg-white w-96 p-8 rounded-xl shadow-xl">
-        {children}
+        <Outlet />
+
       </div>
 
     </div>

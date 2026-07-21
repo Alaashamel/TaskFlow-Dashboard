@@ -1,35 +1,31 @@
-import type { InputHTMLAttributes } from "react";
+import { forwardRef } from "react";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label?: string;
-  error?: string;
+interface Props {
+  type?: string;
+  placeholder: string;
 }
 
-export default function InputField({
-  label,
-  error,
-  ...props
-}: Props) {
+
+const InputField = forwardRef<HTMLInputElement, Props>(
+(
+  {
+    type = "text",
+    placeholder,
+    ...props
+  },
+  ref
+) => {
+
   return (
-    <div className="mb-4">
-
-      {label && (
-        <label className="block mb-2 text-sm font-medium">
-          {label}
-        </label>
-      )}
-
-      <input
-        {...props}
-        className="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-500"
-      />
-
-      {error && (
-        <p className="text-red-500 text-sm mt-1">
-          {error}
-        </p>
-      )}
-
-    </div>
+    <input
+      ref={ref}
+      type={type}
+      placeholder={placeholder}
+      {...props}
+      className="w-full border p-3 rounded mb-4"
+    />
   );
-}
+});
+
+
+export default InputField;

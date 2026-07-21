@@ -1,30 +1,86 @@
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/InputField";
-import AuthLayout from "../layouts/AuthLayout";
+
+const loginSchema = z.object({
+  email: z
+    .string()
+    .email("Invalid email address"),
+
+  password: z
+    .string()
+    .min(6, "Password must be at least 6 characters"),
+});
+
+
+type LoginForm = z.infer<typeof loginSchema>;
 
 
 export default function Login() {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginForm>({
+    resolver: zodResolver(loginSchema),
+  });
+
+
+  const onSubmit = (data: LoginForm) => {
+    console.log(data);
+  };
+
+
   return (
-    <AuthLayout>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
 
-      <h1 className="text-2xl font-bold mb-6">
-        Login
-      </h1>
+      <div className="bg-white p-8 rounded-xl shadow w-96">
 
-      <InputField
-        placeholder="Email"
-      />
-
-      <InputField
-        placeholder="Password"
-        type="password"
-      />
+        <h1 className="text-2xl font-bold mb-6">
+          Login
+        </h1>
 
 
-      <button className="w-full bg-blue-600 text-white p-3 rounded">
-        Login
-      </button>
+        <form onSubmit={handleSubmit(onSubmit)}>
+
+          <InputField
+            placeholder="Email"
+            {...register("email")}
+          />
+
+          {errors.email && (
+            <p className="text-red-500 text-sm mb-2">
+              {errors.email.message}
+            </p>
+          )}
 
 
-    </AuthLayout>
+          <InputField
+            placeholder="Password"
+            type="password"
+            {...register("password")}
+          />
+
+          {errors.password && (
+            <p className="text-red-500 text-sm mb-2">
+              {errors.password.message}
+            </p>
+          )}
+
+
+          <button
+            className="w-full bg-blue-600 text-white p-3 rounded"
+          >
+            Login
+          </button>
+
+
+        </form>
+
+      </div>
+
+    </div>
   );
 }

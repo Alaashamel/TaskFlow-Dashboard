@@ -1,22 +1,18 @@
-import Navbar from "../components/Navbar";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
+import Navbar from "../components/Navbar";
 
-interface Props {
-  children: React.ReactNode;
-}
 
-export default function MainLayout({ children }: Props) {
+export default function MainLayout() {
+
   return (
     <div>
+
       <Navbar />
+      <Sidebar />
 
-      <div className="flex">
-        <Sidebar />
+      <Outlet />
 
-        <main className="flex-1 p-6">
-          {children}
-        </main>
-      </div>
     </div>
   );
 }
