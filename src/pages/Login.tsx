@@ -2,16 +2,15 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { login } from "../services/auth";
-
-import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
-
   password: z
     .string()
     .min(6, "Password must be at least 6 characters"),
@@ -23,6 +22,8 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const { login: loginUser } = useAuth();
 
   const {
     register,
@@ -38,11 +39,7 @@ export default function Login() {
 
       const response = await login(data);
 
-      console.log(response);
-
-      // حفظ بيانات المستخدم (مؤقتًا)
-     localStorage.setItem("token", response.token);
-localStorage.setItem("user", JSON.stringify(response.user));
+      loginUser(response.user, response.token);
 
       navigate("/dashboard");
     } catch (error) {
