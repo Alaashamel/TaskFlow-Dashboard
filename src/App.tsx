@@ -9,6 +9,8 @@ import Register from "./pages/Register";
 
 import ProtectedRoute from "./routes/ProtectedRoute";
 
+import Profile from "./pages/Profile";
+
 function App() {
   return (
     <BrowserRouter>
@@ -24,12 +26,17 @@ function App() {
         <Route
           element={
             <ProtectedRoute>
+              <Route
+  path="/profile"
+  element={<Profile />}
+/>
               <MainLayout />
             </ProtectedRoute>
           }
         >
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
+        
       </Routes>
     </BrowserRouter>
   );
