@@ -1,3 +1,6 @@
+import InputField from "../components/InputField";
+
+
 export default function Register() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -7,22 +10,14 @@ export default function Register() {
           Create Account
         </h1>
 
-        <input
-          className="w-full border p-3 rounded mb-4"
-          placeholder="Name"
-        />
+        <InputField placeholder="Name" />
 
-        <input
-          className="w-full border p-3 rounded mb-4"
-          placeholder="Email"
-        />
+<InputField placeholder="Email" />
 
-        <input
-          className="w-full border p-3 rounded mb-4"
-          placeholder="Password"
-          type="password"
-        />
-
+<InputField
+  placeholder="Password"
+  type="password"
+/>
         <button className="w-full bg-blue-600 text-white p-3 rounded">
           Register
         </button>
