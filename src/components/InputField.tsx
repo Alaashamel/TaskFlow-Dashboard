@@ -1,20 +1,35 @@
-interface Props {
-  type?: string;
-  placeholder: string;
-  value?: string;
+import type { InputHTMLAttributes } from "react";
+
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string;
 }
 
 export default function InputField({
-  type = "text",
-  placeholder,
-  value,
+  label,
+  error,
+  ...props
 }: Props) {
   return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      className="w-full border p-3 rounded mb-4"
-    />
+    <div className="mb-4">
+
+      {label && (
+        <label className="block mb-2 text-sm font-medium">
+          {label}
+        </label>
+      )}
+
+      <input
+        {...props}
+        className="w-full border p-3 rounded outline-none focus:ring-2 focus:ring-blue-500"
+      />
+
+      {error && (
+        <p className="text-red-500 text-sm mt-1">
+          {error}
+        </p>
+      )}
+
+    </div>
   );
 }
