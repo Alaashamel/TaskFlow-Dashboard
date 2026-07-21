@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import InputField from "../components/InputField";
+import Button from "../components/Button";
+
+
 
 const loginSchema = z.object({
   email: z
@@ -70,11 +73,10 @@ export default function Login() {
           )}
 
 
-          <button
-            className="w-full bg-blue-600 text-white p-3 rounded"
-          >
-            Login
-          </button>
+          <Button
+    text="Login"
+    type="submit"
+/>
 
 
         </form>

@@ -1,6 +1,6 @@
 import InputField from "../components/InputField";
 import AuthLayout from "../layouts/AuthLayout";
-
+import Button from "../components/Button";
 
 export default function Register() {
   return (
@@ -27,9 +27,10 @@ export default function Register() {
       />
 
 
-      <button className="w-full bg-blue-600 text-white p-3 rounded">
-        Register
-      </button>
+      <Button
+    text="Register"
+    type="submit"
+/>
 
 
     </AuthLayout>
