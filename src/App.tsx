@@ -19,22 +19,25 @@ import Settings from "./pages/Settings";
 import ProtectedRoute from "./routes/ProtectedRoute";
 
 
-
 function App() {
   return (
     <BrowserRouter>
+
       <Routes>
 
-        {/* Default Route */}
+        {/* Default */}
         <Route
           path="/"
           element={
-            <Navigate to="/login" replace />
+            <Navigate 
+              to="/dashboard" 
+              replace 
+            />
           }
         />
 
 
-        {/* Authentication Routes */}
+        {/* Auth */}
         <Route element={<AuthLayout />}>
 
           <Route
@@ -51,7 +54,7 @@ function App() {
 
 
 
-        {/* Protected Application Routes */}
+        {/* Application */}
         <Route
           element={
             <ProtectedRoute>
@@ -72,28 +75,41 @@ function App() {
           />
 
 
-<Route
-  path="/projects"
-  element={<Projects />}
-/>
+          <Route
+            path="/projects"
+            element={<Projects />}
+          />
 
-<Route
-  path="/tasks"
-  element={<Tasks />}
-/>
 
-<Route
-  path="/settings"
-  element={<Settings />}
-/>
+          <Route
+            path="/tasks"
+            element={<Tasks />}
+          />
+
+
+          <Route
+            path="/settings"
+            element={<Settings />}
+          />
 
 
         </Route>
 
 
+        {/* Not Found */}
+        <Route
+          path="*"
+          element={
+            <Navigate to="/dashboard" replace />
+          }
+        />
+
+
       </Routes>
+
     </BrowserRouter>
   );
 }
+
 
 export default App;
