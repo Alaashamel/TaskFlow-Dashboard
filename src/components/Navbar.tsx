@@ -2,7 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import UserMenu from "./UserMenu";
 
 export default function Navbar() {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return (
     <nav className="h-16 border-b bg-white flex items-center justify-between px-6">
@@ -10,12 +10,7 @@ export default function Navbar() {
         TaskFlow
       </h1>
 
-      {user && (
-        <UserMenu
-          name={user.name}
-          email={user.email}
-        />
-      )}
+      {isAuthenticated && <UserMenu />}
     </nav>
   );
 }

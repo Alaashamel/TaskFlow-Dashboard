@@ -1,18 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-interface UserMenuProps {
-  name: string;
-  email: string;
-}
-
-export default function UserMenu({
-  name,
-  email,
-}: UserMenuProps) {
+export default function UserMenu() {
   const navigate = useNavigate();
 
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
+
+  if (!user) return null;
 
   const handleLogout = () => {
     logout();
@@ -22,16 +16,16 @@ export default function UserMenu({
   return (
     <div className="flex items-center gap-4">
       <div className="w-11 h-11 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
-        {name.charAt(0).toUpperCase()}
+        {user.name.charAt(0).toUpperCase()}
       </div>
 
       <div className="text-right">
         <p className="font-semibold">
-          {name}
+          {user.name}
         </p>
 
         <p className="text-sm text-gray-500">
-          {email}
+          {user.email}
         </p>
       </div>
 
